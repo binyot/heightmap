@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Framebuffer.h"
+#include "Surface.h"
 
 const unsigned SCREEN_W = 128,
         SCREEN_H = 128,
@@ -12,7 +12,7 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_W, WINDOW_H), "");
     window.setVerticalSyncEnabled(VSYNC);
 
-    auto fb = Framebuffer(SCREEN_W, SCREEN_H);
+    auto fb = Surface(SCREEN_W, SCREEN_H);
     sf::Texture texture;
     texture.create(fb.width(), fb.height());
     texture.update(fb.data());
@@ -41,9 +41,7 @@ int main() {
         window.clear();
         window.draw(vao, &texture);
         window.display();
-
     }
-
 
     return 0;
 }

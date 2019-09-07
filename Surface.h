@@ -1,11 +1,10 @@
-#ifndef HEIGHTMAP_FRAMEBUFFER_H
-#define HEIGHTMAP_FRAMEBUFFER_H
+#ifndef HEIGHTMAP_SURFACE_H
+#define HEIGHTMAP_SURFACE_H
 
 #include <cstdint>
 #include <cmath>
 #include <array>
 #include <vector>
-#include <initializer_list>
 
 template<typename UnitT = uint8_t, size_t Stride = 4>
 struct Color {
@@ -22,7 +21,7 @@ struct Color {
 typedef Color<uint8_t, 4> Color32;
 
 template<typename UnitT = uint8_t, size_t Stride = 4>
-class Framebuffer {
+class Surface {
 private:
     std::size_t m_width;
     std::size_t m_height;
@@ -31,9 +30,9 @@ private:
 public:
     using ColorT = Color<UnitT, Stride>;
 
-    Framebuffer() = delete;
+    Surface() = delete;
 
-    Framebuffer(std::size_t width, std::size_t height)
+    Surface(std::size_t width, std::size_t height)
             : m_width(width), m_height(height) {
         m_data.resize(m_width * m_height * Stride);
     }
@@ -75,4 +74,4 @@ public:
     constexpr auto height() const noexcept { return m_height; }
 };
 
-#endif //HEIGHTMAP_FRAMEBUFFER_H
+#endif //HEIGHTMAP_SURFACE_H
