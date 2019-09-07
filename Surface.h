@@ -37,6 +37,12 @@ public:
         m_data.resize(m_width * m_height * Stride);
     }
 
+    Surface(const Surface &surf)
+            : m_width(surf.m_width), m_height(surf.m_height), m_data(surf.m_data) {}
+
+    Surface(Surface &&surf) noexcept
+            : m_width(surf.m_width), m_height(surf.m_height), m_data(surf.m_data) {}
+
     constexpr void set(int x, int y, const ColorT &color) {
         auto position = m_data.data() + (x + y * m_width) * Stride;
         std::copy(begin(color.data), end(color.data), position);
